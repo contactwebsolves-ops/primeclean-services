@@ -19,20 +19,28 @@ const mainLinks = [
 export function Header() {
   const [open, setOpen] = useState(false);
   return <>
-    <header className="sticky top-0 z-50 border-b border-border/70 bg-background/95 shadow-sm backdrop-blur-xl">
+    <header className="sticky top-0 z-50 shadow-sm">
+      <div className="bg-brand-deep text-primary-foreground">
+        <div className="page-shell flex h-9 items-center justify-center gap-2 text-xs font-semibold tracking-wide sm:justify-between">
+          <span className="flex items-center gap-2"><span className="size-1.5 rounded-full bg-brand-bright" />Same-Day & Next-Day Appointments Available</span>
+          <span className="hidden text-primary-foreground/70 sm:inline">Serving Winnipeg, Manitoba · 100% Satisfaction Guarantee</span>
+        </div>
+      </div>
+      <div className="border-b border-border/70 bg-background/90 backdrop-blur-xl">
       <div className="page-shell flex h-20 items-center justify-between gap-5">
         <Brand />
-        <nav className="hidden items-center gap-6 lg:flex" aria-label="Main navigation">
+        <nav className="hidden items-center gap-1 rounded-full border border-border/70 bg-secondary/40 px-2 py-1.5 lg:flex" aria-label="Main navigation">
           {mainLinks.slice(0, 2).map((item) => <NavLink key={item.to} {...item} />)}
-          <div className="group relative py-6"><Link to="/services" className="flex items-center gap-1 text-sm font-semibold text-foreground/75 transition hover:text-primary">Services <ChevronDown className="size-3.5" /></Link>
-            <div className="invisible absolute left-1/2 top-[68px] w-64 -translate-x-1/2 rounded-lg border bg-popover p-2 opacity-0 shadow-xl transition group-hover:visible group-hover:opacity-100">
+          <div className="group relative"><Link to="/services" className="flex items-center gap-1 rounded-full px-4 py-2 text-sm font-semibold text-foreground/75 transition hover:bg-background hover:text-primary">Services <ChevronDown className="size-3.5 transition group-hover:rotate-180" /></Link>
+            <div className="invisible absolute left-1/2 top-full w-64 -translate-x-1/2 pt-3 opacity-0 transition group-hover:visible group-hover:opacity-100"><div className="rounded-xl border bg-popover p-2 shadow-xl">
               {services.map((service) => <Link key={service.slug} to="/services/$slug" params={{ slug: service.slug }} className="flex items-center gap-3 rounded-md px-3 py-2.5 text-sm font-medium hover:bg-accent"><service.icon className="size-4 text-primary" />{service.name}</Link>)}
-            </div>
+            </div></div>
           </div>
           {mainLinks.slice(2).map((item) => <NavLink key={item.to} {...item} />)}
         </nav>
-        <Button asChild className="hidden lg:inline-flex"><Link to="/booking">Book Now</Link></Button>
+        <Button asChild className="hidden rounded-full px-6 shadow-lg shadow-primary/25 lg:inline-flex"><Link to="/booking">Book Now</Link></Button>
         <Button className="lg:hidden" variant="ghost" size="icon" onClick={() => setOpen(!open)} aria-label="Toggle menu">{open ? <X /> : <Menu />}</Button>
+      </div>
       </div>
       {open && <div className="border-t bg-background p-5 lg:hidden"><nav className="grid gap-1">
         {mainLinks.map((item) => <Link key={item.to} to={item.to} onClick={() => setOpen(false)} className="rounded-md px-3 py-3 font-semibold hover:bg-accent">{item.label}</Link>)}
@@ -44,7 +52,7 @@ export function Header() {
 }
 
 function NavLink({ to, label }: { to: "/" | "/about" | "/gallery" | "/blog" | "/contact"; label: string }) {
-  return <Link to={to} activeProps={{ className: "text-primary" }} inactiveProps={{ className: "text-foreground/75" }} activeOptions={{ exact: to === "/" }} className="text-sm font-semibold transition hover:text-primary">{label}</Link>;
+  return <Link to={to} activeProps={{ className: "bg-background text-primary shadow-sm" }} inactiveProps={{ className: "text-foreground/75" }} activeOptions={{ exact: to === "/" }} className="rounded-full px-4 py-2 text-sm font-semibold transition hover:bg-background hover:text-primary">{label}</Link>;
 }
 
 export function Footer() {
