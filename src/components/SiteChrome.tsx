@@ -6,8 +6,8 @@ import { Button } from "@/components/ui/button";
 import { services } from "@/lib/site-data";
 
 export function Brand({ inverse = false }: { inverse?: boolean }) {
-  return <Link to="/" aria-label="PrimeClean Services home" className={`inline-flex items-center ${inverse ? "rounded-lg bg-card px-3 py-2" : ""}`}>
-    <img src={logo.url} alt="PrimeClean Services" width={419} height={227} className={inverse ? "h-12 w-auto" : "h-16 w-auto mix-blend-multiply"} />
+  return <Link to="/" aria-label="PrimeClean Services home" className={`inline-flex items-center ${inverse ? "rounded-xl bg-card px-5 py-3 shadow-lg ring-1 ring-primary-foreground/20 transition hover:-translate-y-0.5 hover:shadow-xl" : ""}`}>
+    <img src={logo.url} alt="PrimeClean Services" width={419} height={227} className={inverse ? "h-14 w-auto" : "h-16 w-auto mix-blend-multiply"} />
   </Link>;
 }
 
